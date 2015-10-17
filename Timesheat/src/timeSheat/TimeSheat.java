@@ -11,14 +11,12 @@ public class TimeSheat {
 	public static void main(String[] args) throws IOException{
 		for(;;){
 			char i;
-			// FileWriter fw = new FileWriter("C:\\javaclub\\test.txt", true);
 			// int ln = LineNumber.line();// 行番号を取得
 			Integer employeeid = EmployeeId.employeeId();// 社員番号を取得
 			String d = WorkDay.day();// 日付を取得
 			String st = Worktime.time();// 開始時間を取得
 			String et = Worktime.time();// 終了時間を取得
 			// String ut = UpdateTime.uptadetime();// 更新時間を取得
-
 			Connection con = null;
 			try {
 				// STEP 1:データベースの接続
@@ -66,18 +64,5 @@ public class TimeSheat {
 				break;
 			}
 		}
-
-		/*BufferedReader br = new BufferedReader(new FileReader("C:\\javaclub\\test.txt"));
-
-		  String str = br.readLine();
-		  while(str != null){
-		    System.out.println(str);
-
-		    str = br.readLine();
-		  }
-
-		  br.close();*/
 	}
-
 }
-
