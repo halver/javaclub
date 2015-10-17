@@ -1,4 +1,5 @@
 package timeSheat;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -7,12 +8,13 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-public class UpdataDb {
 
-	public void updata() throws IOException{
+public class DeleatDb {
+
+	public void deleat() throws IOException {
 		for(;;){
 			char i;
-			System.out.println("更新元データを検索します。");
+			System.out.println("削除データを検索します。");
 			Integer employeeid = EmployeeId.employeeId();// 社員番号を取得
 			String d = WorkDay.day();// 日付を取得
 			//String st = Worktime.time();// 開始時間を取得
@@ -43,18 +45,14 @@ public class UpdataDb {
 				}
 				rs1.close();
 				pstmt1.close();// 後片付け
-				String st = Worktime.time();// 開始時間を取得
-				String et = Worktime.time();// 終了時間を取得
 				PreparedStatement pstmt2 = con.prepareStatement
-						("update timesheat set start_time = ?, end_time = ? where employee_id=? and working_day=?");
-				pstmt2.setString(1, st);
-				pstmt2.setString(2, et);
-				pstmt2.setInt(3, employeeid);
-				pstmt2.setString(4, d);
+						("delete from timesheat where employee_id=? and working_day=?");
+				pstmt2.setInt(1, employeeid);
+				pstmt2.setString(2, d);
 				int r = pstmt2.executeUpdate();
 				// STEP2-①-3 処理結果を判定する
 				if(r != 0){
-					System.out.println("レコードを追加しました");
+					System.out.println("レコードを削除しました");
 				}
 				pstmt2.close();// 後片付け
 			}catch(SQLException e) {
@@ -70,7 +68,7 @@ public class UpdataDb {
 				}
 			}
 			for(;;){
-				System.out.println("続けて更新しますか? y/n");
+				System.out.println("続けて削除しますか? y/n");
 				BufferedReader yn=new BufferedReader(new InputStreamReader(System.in));
 				i = (char) yn.read();
 				if(i == 'y' || i == 'n' )
@@ -81,5 +79,7 @@ public class UpdataDb {
 				break;
 			}
 		}
+
 	}
+
 }
