@@ -11,7 +11,7 @@ public class TimeSheat {
 	public static void main(String[] args) throws IOException{
 		for(;;){
 			char i;
-			// int ln = LineNumber.line();// 行番号を取得
+			int cn = ColumnNumber.columnNuber();// 登録済みのカラム数を取得
 			Integer employeeid = EmployeeId.employeeId();// 社員番号を取得
 			String d = WorkDay.day();// 日付を取得
 			String st = Worktime.time();// 開始時間を取得
@@ -27,12 +27,13 @@ public class TimeSheat {
 				// STEP 2:SQL送信処理
 				// STEP 2-①-1 送信すべきSQL文の雛形を準備
 				PreparedStatement pstmt = con.prepareStatement
-						("insert into timesheat.timesheat (employee_id,working_day,start_time,end_time) values (?,?,?,?)");
+						("insert into timesheat.timesheat (id,employee_id,working_day,start_time,end_time) values (?,?,?,?,?)");
 				// STEP 2-①-2 雛形に値を流し込みSQL文を組み立てて送信する
-				pstmt.setInt(1, employeeid);
-				pstmt.setString(2, d);
-				pstmt.setString(3, st);
-				pstmt.setString(4, et);
+				pstmt.setInt(1, cn);
+				pstmt.setInt(2, employeeid);
+				pstmt.setString(3, d);
+				pstmt.setString(4, st);
+				pstmt.setString(5, et);
 				int r = pstmt.executeUpdate();
 				// STEP2-①-3 処理結果を判定する
 				if(r != 0){
