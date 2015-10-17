@@ -20,7 +20,7 @@ public class TimeSheat {
 			Connection con = null;
 			try {
 				// STEP 1:データベースの接続
-				String url = "jdbc:mysql://localhost/sampledb";
+				String url = "jdbc:mysql://localhost/timesheat";
 				String user = "root";
 				String password = "root";
 				con = DriverManager.getConnection(url, user, password);
