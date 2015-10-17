@@ -1,24 +1,58 @@
 package timeSheat;
 import java.io.BufferedReader;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 public class TimeSheat {
 
 	public static void main(String[] args) throws IOException{
 		for(;;){
 			char i;
-			FileWriter fw = new FileWriter("C:\\javaclub\\test.txt", true);
-			int ln = LineNumber.line();// 行番号を取得
-			Integer stuffid = StuffId.stuffid();// 社員番号を取得
+			// FileWriter fw = new FileWriter("C:\\javaclub\\test.txt", true);
+			// int ln = LineNumber.line();// 行番号を取得
+			Integer employeeid = EmployeeId.employeeId();// 社員番号を取得
 			String d = WorkDay.day();// 日付を取得
 			String st = Worktime.time();// 開始時間を取得
 			String et = Worktime.time();// 終了時間を取得
-			String ut = UpdateTime.uptadetime();// 更新時間を取得
-			fw.write("項番：" + ln + " 社員番号：" + stuffid + " 日付：" + d +
-					" 開始時刻：" + st + " 終了時刻：" + et + " 更新時間："+ ut +"\n");
-			fw.flush();
-			fw.close();
+			// String ut = UpdateTime.uptadetime();// 更新時間を取得
+
+			Connection con = null;
+			try {
+				// STEP 1:データベースの接続
+				String url = "jdbc:mysql://localhost/sampledb";
+				String user = "root";
+				String password = "root";
+				con = DriverManager.getConnection(url, user, password);
+				// STEP 2:SQL送信処理
+				// STEP 2-①-1 送信すべきSQL文の雛形を準備
+				PreparedStatement pstmt = con.prepareStatement
+						("insert into timesheat.timesheat (employee_id,working_day,start_time,end_time) values (?,?,?,?)");
+				// STEP 2-①-2 雛形に値を流し込みSQL文を組み立てて送信する
+				pstmt.setInt(1, employeeid);
+				pstmt.setString(2, d);
+				pstmt.setString(3, st);
+				pstmt.setString(4, et);
+				int r = pstmt.executeUpdate();
+				// STEP2-①-3 処理結果を判定する
+				if(r != 0){
+					System.out.println("レコードを追加しました");
+				}
+				pstmt.close();// 後片付け
+			}catch(SQLException e) {
+				e.printStackTrace();
+			} finally {
+				// STEP 3:データベース接続の切断
+				if(con != null) {
+					try {
+						con.close();
+					}catch(SQLException e) {
+						e.printStackTrace();
+					}
+				}
+			}
 			System.out.println("入力が完了しました。");
 			for(;;){
 				System.out.println("続けて入力しますか? y/n");
