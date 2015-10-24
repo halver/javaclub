@@ -1,6 +1,13 @@
 package timeSheat;
 
+/**
+ * 勤務時刻入力クラス<br>
+ * このクラスは勤務時間の入力を求め入力値を返します
+ */
 public class Worktime {
+	/**
+	 * 勤務時刻を取得して値渡すメソッド
+	 */
 	public static String time(){
 		System.out.println("時刻(hh/dd)を入力してください");
 		@SuppressWarnings("resource")
