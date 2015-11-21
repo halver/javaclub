@@ -35,6 +35,7 @@ public class UpdataDb {
 				ResultSet rs1 = pstmt1.executeQuery();
 				// STEP2-①-3 処理結果を判定する
 				if(rs1.next()) {
+					System.out.println("現在の登録内容です");
 					System.out.println("項番　社員番号　勤務日　開始日時　終了日時　更新日時");
 					System.out.printf("%d %s %s %s %s %s\n",rs1.getInt("id"),rs1.getString("employee_id"),rs1.getString("working_day")
 							,rs1.getString("start_time"),rs1.getString("end_time"),rs1.getString("updata_time"));
@@ -43,8 +44,8 @@ public class UpdataDb {
 				}
 				rs1.close();
 				pstmt1.close();// 後片付け
-				String st = Worktime.time();// 開始時間を取得
-				String et = Worktime.time();// 終了時間を取得
+				String st = Worktime.startTime();// 開始時間を取得
+				String et = Worktime.endTime();// 終了時間を取得
 				PreparedStatement pstmt2 = con.prepareStatement
 						("update timesheat set start_time = ?, end_time = ? where employee_id=? and working_day=?");
 				pstmt2.setString(1, st);
