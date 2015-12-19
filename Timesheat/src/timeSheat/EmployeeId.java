@@ -10,8 +10,9 @@ import java.util.Scanner;
 public class EmployeeId {
 	/**
 	 * 社員番号の入力を求め取得した社員番号を返すメソッド
-	 * @return Integer型の社員番号を返します
+	 * @return int型の社員番号を返します
 	 */
+	@SuppressWarnings("resource")
 	public static int employeeId(){
 		System.out.println("社員番号を入力してください");
 		int ei;
@@ -23,9 +24,11 @@ public class EmployeeId {
 					System.out.println("社員番号が長過ぎます。6桁までの数字で入力してください");
 					ei = sc.nextInt();
 				}
+				//sc.close();
 				return ei;
 			}catch(InputMismatchException e){
 				System.out.println("社員番号は6桁の数字で入力してください。");
+				sc.next();
 			}
 		}
 	}

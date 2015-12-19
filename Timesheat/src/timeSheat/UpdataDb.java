@@ -10,13 +10,11 @@ import java.sql.SQLException;
 public class UpdataDb {
 
 	public void updata() throws IOException{
-		for(;;){
+		while(true){
 			char i;
 			System.out.println("更新元データを検索します。");
 			Integer employeeid = EmployeeId.employeeId();// 社員番号を取得
 			String d = WorkDay.day();// 日付を取得
-			//String st = Worktime.time();// 開始時間を取得
-			//String et = Worktime.time();// 終了時間を取得
 			Connection con = null;
 
 			try {
@@ -70,7 +68,7 @@ public class UpdataDb {
 					}
 				}
 			}
-			for(;;){
+			while(true){
 				System.out.println("続けて更新しますか? y/n");
 				BufferedReader yn=new BufferedReader(new InputStreamReader(System.in));
 				i = (char) yn.read();

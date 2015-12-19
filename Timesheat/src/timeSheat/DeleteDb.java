@@ -12,7 +12,7 @@ import java.sql.SQLException;
 public class DeleteDb {
 
 	public void delete() throws IOException {
-		for(;;){
+		while(true){
 			char i;
 			System.out.println("削除データを検索します。");
 			Integer employeeid = EmployeeId.employeeId();// 社員番号を取得
@@ -67,7 +67,7 @@ public class DeleteDb {
 					}
 				}
 			}
-			for(;;){
+			while(true){
 				System.out.println("続けて削除しますか? y/n");
 				BufferedReader yn=new BufferedReader(new InputStreamReader(System.in));
 				i = (char) yn.read();

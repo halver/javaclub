@@ -13,6 +13,7 @@ public class WorkDay {
 	 * @param date 勤務日
 	 * @return 勤務日をString型で返します
 	 */
+	@SuppressWarnings("resource")
 	public static String day(){
 		System.out.println("日付(yyyy/MM/dd)を入力してください");
 		Scanner sc = new Scanner(System.in);
