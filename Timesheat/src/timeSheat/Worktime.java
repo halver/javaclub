@@ -1,5 +1,7 @@
 package timeSheat;
 
+import java.util.Scanner;
+
 import org.apache.log4j.Logger;
 
 /**
@@ -34,11 +36,12 @@ public class Worktime {
 	public static String time(){
 		logger.debug("時刻の取得を開始します。");
 		@SuppressWarnings("resource")
-		String time = new java.util.Scanner(System.in).nextLine();
+		Scanner sc = new Scanner(System.in);
+		String time = sc.nextLine();
 		while(!time.matches("^[012]?[0-9]:[0-9]?[0-9]$")){
 			logger.info("正しくない形式の入力を検知しました");
 			System.out.println("時刻の入力形式が正しくありません。時刻(hh:dd)を入力しなおしてください");
-			time = new java.util.Scanner(System.in).nextLine();
+			time = sc.nextLine();
 		}
 		logger.debug("取得した時刻を渡します。");
 		return time;

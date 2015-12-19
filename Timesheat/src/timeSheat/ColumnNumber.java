@@ -16,7 +16,7 @@ public class ColumnNumber {
 	 * @return レコード数cnに＋１した値ををint型で返します
 	 * @param cn 登録されているレコード数
 	 */
-	public static int columnNuber() {
+	public static int columnNumber() {
 		int cn = 0;
 		try {
 			Class.forName("com.mysql.jdbc.Driver");

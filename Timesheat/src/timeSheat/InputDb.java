@@ -20,9 +20,9 @@ public class InputDb {
  * @throws IOException
  */
 	public void input() throws IOException{
-		for(;;){
+		while(true){
 			char i;
-			int cn = ColumnNumber.columnNuber();// 登録済みのカラム数を取得
+			int cn = ColumnNumber.columnNumber();// 登録済みのカラム数を取得
 			Integer employeeid = EmployeeId.employeeId();// 社員番号を取得
 			String d = WorkDay.day();// 日付を取得
 			String st = Worktime.startTime();// 開始時間を取得
@@ -58,7 +58,7 @@ public class InputDb {
 				}
 			}
 			System.out.println("入力が完了しました。");
-			for(;;){
+			while(true){
 				System.out.println("続けて入力しますか? y/n");
 				BufferedReader yn=new BufferedReader(new InputStreamReader(System.in));
 				i = (char) yn.read();

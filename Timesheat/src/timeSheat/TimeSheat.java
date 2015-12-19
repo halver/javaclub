@@ -29,8 +29,8 @@ public class TimeSheat {
 				break;
 			case 3:
 				logger.debug("レコードを削除します。");
-				DeleatDb del = new DeleatDb();
-				del.deleat();
+				DeleteDb del = new DeleteDb();
+				del.delete();
 				logger.debug("レコードを削除しました。");
 				break;
 			case 4:

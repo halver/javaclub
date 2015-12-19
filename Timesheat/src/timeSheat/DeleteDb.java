@@ -9,9 +9,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class DeleatDb {
+public class DeleteDb {
 
-	public void deleat() throws IOException {
+	public void delete() throws IOException {
 		for(;;){
 			char i;
 			System.out.println("削除データを検索します。");
